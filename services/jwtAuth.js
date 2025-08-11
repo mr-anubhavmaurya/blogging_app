@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
 const {randomBytes} = require("crypto")
 const secret = randomBytes(16).toString();
-console.log("secret:", secret);
-// const secret = "anubhav"
+// console.log("secret:", secret);
+
 
 
 function verifyToken(token){
