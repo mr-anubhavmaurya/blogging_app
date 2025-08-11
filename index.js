@@ -4,6 +4,7 @@ require("dotenv").config();
 const path = require("path");
 const PORT = process.env.PORT;
 const userRoute = require("./routes/user");
+const blogRoute = require("./routes/blog")
 const db = require("./connection");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -29,6 +30,7 @@ app.get("/", (req, res) => {
 });
 // routes
 app.use("/user", userRoute);
+app.use("/blog", blogRoute);
 
 app.listen(PORT, () => {
   console.log(`server running at:- http://localhost:${PORT}`);
