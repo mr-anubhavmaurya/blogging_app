@@ -8,10 +8,10 @@ const cookieParser = require("cookie-parser");
 
 //imports
 const userRoute = require("./routes/user");
-const blogRoute = require("./routes/blog")
+const blogRoute = require("./routes/blog");
 const db = require("./connection");
-const { checkAuthenticationCookie } = require("./middlewares/authentication")
-const Blog = require("./models/blog")
+const { checkAuthenticationCookie } = require("./middlewares/authentication");
+const Blog = require("./models/blog");
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
@@ -21,14 +21,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(checkAuthenticationCookie("token"));
-app.use(express.static(path.resolve("./public")))
-// app.use((err,req,res,next)=>{
-//   console.log(err);
-//   res.status(500).send("something broke!")
-// })
+app.use(express.static(path.resolve("./public")));
 
 app.get("/", async (req, res) => {
-  const allBlogs = await Blog.find({}).sort({"createdAt":-1}) 
+  const allBlogs = await Blog.find({}).sort({ createdAt: -1 });
   res.render("home", {
     user: req.user,
     blogs: allBlogs,
